@@ -33,7 +33,7 @@ lexer = Rouge::Lexers::Ruby.new
 
 
 
-get /\A\/([\w]{8})\z/ do
+get /\A\/([-_\w]{8})\z/ do
   u = params['captures'].first
   c = Code.get("#{u}")
   slim :show, :locals => {:style => Rouge::Themes::Github.render(scope: '.highlight'),
