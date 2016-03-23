@@ -15,19 +15,6 @@ end
 
 DataMapper.finalize.auto_upgrade!
 
-
-Code.create(:id => "aaaaaaaa", :content => "def fact(n)
-  if(n > 1)
-    n * fact(n-1)
-  else
-    1
-  end
-end
-
-100.times {
-  fact(5000)
-}")
-
 #======================
 
 def random_url
