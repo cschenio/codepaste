@@ -54,6 +54,11 @@ get /\A\/([\w]{8})\z/ do
 end
 
 get '/' do
-  "See \$hostname/aaaaaaaa to view the effect."
+  slim :index
 end
 
+post '/' do
+  url = random_url()
+  Code.create(:id => url, :content => params[:content])
+  redirect "/#{url}"
+end
