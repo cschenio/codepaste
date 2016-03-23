@@ -2,6 +2,7 @@ require 'sinatra'
 require 'slim'
 require 'data_mapper'
 require 'rouge'
+require 'securerandom'
 
 # DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/app.db")
   DataMapper.setup(:default, 'sqlite::memory:')
@@ -28,6 +29,17 @@ end
 }")
 
 #======================
+
+def random_url
+  str = String.new
+  loop do
+    str = SecureRandom.urlsafe_base64(6, false)
+    break if Code.get("#{str}") == nil
+  end
+  str
+end
+
+#=====================
 
 formatter = Rouge::Formatters::HTML.new(css_class: 'highlight',line_numbers: true)
 lexer = Rouge::Lexers::Ruby.new
